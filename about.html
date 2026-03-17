@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tentang Kami — JAKINIME</title>
+  <meta name="description" content="Jakinime adalah platform baca komik digital gratis tanpa iklan, dibangun dengan dedikasi oleh mahasiswa Teknik Informatika." />
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            jakarta: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            bg: '#0B0E14',
+            surface: '#151921',
+            accent: '#6366F1',
+            'accent-light': '#818CF8',
+            'accent-dark': '#4F46E5',
+            border: '#1E2634',
+            muted: '#8892A4',
+          },
+          backgroundImage: {
+            'hero-glow': 'radial-gradient(ellipse 80% 60% at 50% -10%, rgba(99,102,241,0.18) 0%, transparent 70%)',
+            'card-glass': 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%)',
+          },
+          boxShadow: {
+            glass: '0 4px 24px 0 rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06)',
+            accent: '0 0 20px rgba(99,102,241,0.3)',
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.6s ease forwards',
+            pulse_slow: 'pulse 4s cubic-bezier(0.4,0,0.6,1) infinite',
+          },
+          keyframes: {
+            fadeUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    * { font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background-color: #0B0E14; color: #E2E8F0; }
+    html { scroll-behavior: smooth; }
+
+    /* Glassmorphism base */
+    .glass-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 100%);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 4px 24px 0 rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .glass-card:hover {
+      border-color: rgba(99,102,241,0.35);
+      box-shadow: 0 8px 32px 0 rgba(0,0,0,0.5), 0 0 20px rgba(99,102,241,0.15), inset 0 1px 0 rgba(255,255,255,0.08);
+      transform: translateY(-2px);
+    }
+
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #818CF8 0%, #6366F1 50%, #A78BFA 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Section fade-in on scroll */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #0B0E14; }
+    ::-webkit-scrollbar-thumb { background: #6366F1; border-radius: 10px; }
+
+    /* Badge pill */
+    .tech-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(99,102,241,0.1);
+      border: 1px solid rgba(99,102,241,0.25);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 0.8rem; font-weight: 600;
+      color: #818CF8;
+      transition: background 0.25s, border-color 0.25s, transform 0.2s;
+    }
+    .tech-badge:hover { background: rgba(99,102,241,0.2); border-color: rgba(99,102,241,0.5); transform: scale(1.04); }
+
+    /* Section divider */
+    .divider { border: none; height: 1px; background: linear-gradient(90deg, transparent 0%, rgba(99,102,241,0.3) 50%, transparent 100%); margin: 0; }
+
+    /* Legal item */
+    .legal-item { border-left: 2px solid rgba(99,102,241,0.4); padding-left: 16px; }
+
+    /* Notification dot */
+    @keyframes ping-slow { 75%, 100% { transform: scale(1.8); opacity: 0; } }
+    .ping-slow { animation: ping-slow 2.5s cubic-bezier(0, 0, 0.2, 1) infinite; }
+  </style>
+</head>
+
+<body class="min-h-screen antialiased">
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <nav class="sticky top-0 z-50 w-full" style="background: rgba(11,14,20,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14 sm:h-16">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2 group">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #6366F1 0%, #A78BFA 100%);">
+          <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M4 6h16M4 10h16M4 14h10M4 18h8"/>
+            <rect x="2" y="3" width="20" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <span class="font-extrabold text-lg tracking-tight gradient-text">JAKINIME</span>
+      </a>
+      <!-- Nav links -->
+      <div class="hidden sm:flex items-center gap-6 text-sm font-medium text-gray-400">
+        <a href="/" class="hover:text-white transition-colors">Beranda</a>
+        <a href="/komik" class="hover:text-white transition-colors">Komik</a>
+        <a href="/about.html" class="text-accent-light">Tentang</a>
+      </div>
+      <!-- CTA -->
+      <a href="/komik" class="text-xs sm:text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-200 hover:shadow-accent hover:scale-105"
+         style="background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);">
+        Baca Komik
+      </a>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO HEADER
+  ============================================================ -->
+  <section class="relative overflow-hidden pt-16 pb-20 sm:pt-24 sm:pb-28">
+    <!-- Background glow -->
+    <div class="absolute inset-0 bg-hero-glow pointer-events-none"></div>
+    <!-- Decorative blobs -->
+    <div class="absolute top-10 left-1/2 -translate-x-1/2 w-96 h-96 rounded-full opacity-10 blur-3xl pointer-events-none" style="background: radial-gradient(circle, #6366F1 0%, transparent 70%);"></div>
+
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 text-center reveal">
+      <!-- Label chip -->
+      <div class="inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full text-xs font-semibold text-accent-light" style="background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.25);">
+        <span class="relative flex h-2 w-2">
+          <span class="ping-slow absolute inline-flex h-full w-full rounded-full bg-accent-light opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+        </span>
+        Platform Open-Source · Teknik Informatika
+      </div>
+
+      <!-- Hero title -->
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight mb-5">
+        Tentang
+        <span class="gradient-text"> JAKINIME</span>
+      </h1>
+
+      <!-- Description -->
+      <p class="text-base sm:text-lg text-gray-400 leading-relaxed max-w-2xl mx-auto mb-8">
+        Jakinime adalah platform baca komik digital yang hadir <strong class="text-gray-200 font-semibold">gratis tanpa iklan</strong>, dibangun dengan dedikasi penuh oleh mahasiswa Teknik Informatika sebagai wujud nyata penerapan teknologi modern untuk komunitas pembaca Indonesia.
+      </p>
+
+      <!-- Stats row -->
+      <div class="flex flex-wrap justify-center gap-6 sm:gap-10">
+        <div class="text-center">
+          <p class="text-2xl sm:text-3xl font-extrabold gradient-text">100%</p>
+          <p class="text-xs text-muted mt-1">Gratis & Tanpa Iklan</p>
+        </div>
+        <div class="w-px bg-border hidden sm:block"></div>
+        <div class="text-center">
+          <p class="text-2xl sm:text-3xl font-extrabold gradient-text">API</p>
+          <p class="text-xs text-muted mt-1">Sankanime Integration</p>
+        </div>
+        <div class="w-px bg-border hidden sm:block"></div>
+        <div class="text-center">
+          <p class="text-2xl sm:text-3xl font-extrabold gradient-text">2</p>
+          <p class="text-xs text-muted mt-1">Core Developer</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- Main content wrapper -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-16 space-y-24">
+
+    <!-- ============================================================
+         TECH STACK SECTION
+    ============================================================ -->
+    <section class="reveal" id="tech">
+      <div class="text-center mb-10">
+        <span class="text-xs font-bold tracking-widest text-accent uppercase">Stack Teknologi</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold mt-2">Dibangun dengan Teknologi Modern</h2>
+      </div>
+
+      <!-- Narasi -->
+      <div class="glass-card rounded-2xl p-6 sm:p-8 mb-8 text-center max-w-3xl mx-auto">
+        <p class="text-sm sm:text-base text-gray-400 leading-relaxed">
+          Jakinime merupakan <strong class="text-gray-200">implementasi nyata</strong> dari studi Teknik Informatika — mengintegrasikan stack modern dari sisi <em>frontend</em> hingga koneksi API pihak ketiga secara hands-on, bukan sekadar teori.
+          Setiap teknologi dipilih berdasarkan relevansi industri dan ketepatan fungsinya dalam ekosistem pengembangan web saat ini.
+        </p>
+      </div>
+
+      <!-- Badges grid -->
+      <div class="flex flex-wrap justify-center gap-3 sm:gap-4">
+        <!-- React -->
+        <span class="tech-badge">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.5" fill="#61DAFB"/><ellipse cx="12" cy="12" rx="10" ry="4" stroke="#61DAFB" stroke-width="1.5" fill="none"/><ellipse cx="12" cy="12" rx="10" ry="4" stroke="#61DAFB" stroke-width="1.5" fill="none" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" stroke="#61DAFB" stroke-width="1.5" fill="none" transform="rotate(120 12 12)"/></svg>
+          React
+        </span>
+        <!-- Vite -->
+        <span class="tech-badge" style="color: #A78BFA; border-color: rgba(167,139,250,0.3); background: rgba(167,139,250,0.08);">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M2 3l10.5 19L20 8h-4.5L12 14 9.5 8H2z"/></svg>
+          Vite
+        </span>
+        <!-- Tailwind -->
+        <span class="tech-badge" style="color: #38BDF8; border-color: rgba(56,189,248,0.3); background: rgba(56,189,248,0.08);">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 6C9 6 7 7.5 6 10.5c1.5-2 3-2.75 4.5-2.25C11.3 8.59 11.94 9.3 12.64 10.07C13.89 11.44 15.35 13 18 13c3 0 5-1.5 6-4.5c-1.5 2-3 2.75-4.5 2.25c-.8-.34-1.44-1.05-2.14-1.82C16.11 7.56 14.65 6 12 6zM6 13c-3 0-5 1.5-6 4.5c1.5-2 3-2.75 4.5-2.25c.8.34 1.44 1.05 2.14 1.82C7.89 18.44 9.35 20 12 20c3 0 5-1.5 6-4.5c-1.5 2-3 2.75-4.5 2.25c-.8-.34-1.44-1.05-2.14-1.82C10.11 14.56 8.65 13 6 13z"/></svg>
+          Tailwind CSS
+        </span>
+        <!-- Node.js -->
+        <span class="tech-badge" style="color: #86EFAC; border-color: rgba(134,239,172,0.3); background: rgba(134,239,172,0.08);">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7v5c0 5.25 4.25 10.15 10 11 5.75-.85 10-5.75 10-11V7L12 2z"/></svg>
+          Node.js
+        </span>
+        <!-- Sankanime API -->
+        <span class="tech-badge">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 20l4-16M6 9l-3 3 3 3M18 9l3 3-3 3"/></svg>
+          Sankanime API
+        </span>
+        <!-- HTML5 -->
+        <span class="tech-badge" style="color: #FB923C; border-color: rgba(251,146,60,0.3); background: rgba(251,146,60,0.08);">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M4 3l1.5 17L12 22l6.5-2L20 3H4zm13.1 5H8.9l.2 2.5h7.8l-.6 6.5L12 18.5l-4.3-1.5-.3-3h2.4l.1 1.5L12 16l2.1-.5.2-2.5H8.7L8.1 8z"/></svg>
+          HTML5
+        </span>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ============================================================
+         VISI & MISI
+    ============================================================ -->
+    <section class="reveal" id="vision">
+      <div class="text-center mb-10">
+        <span class="text-xs font-bold tracking-widest text-accent uppercase">Arah Kami</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold mt-2">Visi & Misi</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Visi -->
+        <div class="glass-card rounded-2xl p-7 sm:p-8 flex flex-col gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(99,102,241,0.15); border: 1px solid rgba(99,102,241,0.3);">
+              <svg class="w-5 h-5 text-accent-light" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-white">Visi Kami</h3>
+          </div>
+          <p class="text-sm sm:text-base text-gray-400 leading-relaxed">
+            Menjadi <strong class="text-gray-200">platform baca komik digital terpercaya</strong> dan paling nyaman bagi pembaca Indonesia — tempat di mana setiap orang bisa menikmati ribuan judul komik kapan saja dan di mana saja, tanpa hambatan.
+          </p>
+          <!-- Key points -->
+          <ul class="space-y-2 mt-1">
+            <li class="flex items-center gap-2 text-sm text-gray-400">
+              <svg class="w-4 h-4 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              Aksesibel untuk semua kalangan
+            </li>
+            <li class="flex items-center gap-2 text-sm text-gray-400">
+              <svg class="w-4 h-4 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              Nol interupsi iklan
+            </li>
+            <li class="flex items-center gap-2 text-sm text-gray-400">
+              <svg class="w-4 h-4 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              Performa tinggi di semua perangkat
+            </li>
+          </ul>
+        </div>
+
+        <!-- Misi -->
+        <div class="glass-card rounded-2xl p-7 sm:p-8 flex flex-col gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(167,139,250,0.15); border: 1px solid rgba(167,139,250,0.3);">
+              <svg class="w-5 h-5" style="color: #A78BFA;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-white">Misi Kami</h3>
+          </div>
+          <ul class="space-y-4 mt-1">
+            <li class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 text-xs font-bold" style="background: rgba(99,102,241,0.2); color: #818CF8;">1</div>
+              <div>
+                <p class="text-sm font-semibold text-gray-200">Akses Mudah & Gratis</p>
+                <p class="text-xs text-gray-500 mt-0.5">Menyediakan konten komik tanpa biaya berlangganan atau hambatan iklan.</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 text-xs font-bold" style="background: rgba(99,102,241,0.2); color: #818CF8;">2</div>
+              <div>
+                <p class="text-sm font-semibold text-gray-200">Komunitas yang Kuat</p>
+                <p class="text-xs text-gray-500 mt-0.5">Membangun ekosistem pembaca yang aktif, saling berbagi, dan saling mendukung.</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 text-xs font-bold" style="background: rgba(99,102,241,0.2); color: #818CF8;">3</div>
+              <div>
+                <p class="text-sm font-semibold text-gray-200">Inovasi Fitur Berkelanjutan</p>
+                <p class="text-xs text-gray-500 mt-0.5">Terus berinovasi: mode baca kustom, bookmark, riwayat, dan notifikasi update.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ============================================================
+         TIM DEVELOPER
+    ============================================================ -->
+    <section class="reveal" id="team">
+      <div class="text-center mb-10">
+        <span class="text-xs font-bold tracking-widest text-accent uppercase">Di Balik Layar</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold mt-2">Tim Developer</h2>
+        <p class="text-sm text-muted mt-2 max-w-md mx-auto">Dibangun dengan ❤️ oleh dua <strong class="text-gray-300">Software Engineer</strong> Teknik Informatika yang aktif coding & merancang di Figma setiap harinya.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+
+        <!-- ── Dafa Card ── -->
+        <div class="glass-card rounded-2xl p-7 flex flex-col items-center text-center gap-4">
+          <!-- Avatar -->
+          <div class="relative">
+            <div class="w-20 h-20 rounded-2xl flex items-center justify-center text-2xl font-extrabold"
+                 style="background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%); box-shadow: 0 0 20px rgba(99,102,241,0.4);">
+              D
+            </div>
+            <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full text-xs font-bold whitespace-nowrap"
+                 style="background: rgba(99,102,241,0.9); border: 1px solid rgba(99,102,241,0.6);">
+              Desktop Eng
+            </div>
+          </div>
+
+          <!-- Info -->
+          <div class="pt-2">
+            <h3 class="text-lg font-bold text-white">Dafa</h3>
+            <p class="text-xs text-accent-light font-semibold mt-0.5">Software Engineer · Desktop</p>
+            <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+              Fokus pada optimasi antarmuka Desktop, arsitektur sistem inti, dan integrasi API Sankanime untuk pengalaman layar lebar yang mulus. Aktif coding sekaligus merancang komponen di Figma.
+            </p>
+          </div>
+
+          <!-- Skill tags -->
+          <div class="flex flex-wrap justify-center gap-2">
+            <span class="text-xs px-2.5 py-1 rounded-full font-medium"
+                  style="background: rgba(99,102,241,0.12); color: #818CF8; border: 1px solid rgba(99,102,241,0.2);">React</span>
+            <span class="text-xs px-2.5 py-1 rounded-full font-medium"
+                  style="background: rgba(99,102,241,0.12); color: #818CF8; border: 1px solid rgba(99,102,241,0.2);">Node.js</span>
+            <span class="text-xs px-2.5 py-1 rounded-full font-medium"
+                  style="background: rgba(99,102,241,0.12); color: #818CF8; border: 1px solid rgba(99,102,241,0.2);">Desktop UI</span>
+          </div>
+
+          <!-- Social links -->
+          <div class="flex items-center gap-3">
+            <a href="https://github.com/dafa" target="_blank" rel="noopener noreferrer"
+               class="flex items-center gap-1.5 text-xs font-medium text-gray-400 hover:text-white transition-all duration-200 px-3 py-1.5 rounded-lg hover:scale-105"
+               style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+              GitHub
+            </a>
+            <a href="https://instagram.com/dafa" target="_blank" rel="noopener noreferrer"
+               class="flex items-center gap-1.5 text-xs font-medium text-gray-400 hover:text-pink-400 transition-all duration-200 px-3 py-1.5 rounded-lg hover:scale-105"
+               style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+              Instagram
+            </a>
+          </div>
+        </div>
+
+        <!-- ── Dzaky Card ── -->
+        <div class="glass-card rounded-2xl p-7 flex flex-col items-center text-center gap-4">
+          <div class="relative">
+            <div class="w-20 h-20 rounded-2xl flex items-center justify-center text-2xl font-extrabold"
+                 style="background: linear-gradient(135deg, #A78BFA 0%, #7C3AED 100%); box-shadow: 0 0 20px rgba(167,139,250,0.4);">
+              Z
+            </div>
+            <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full text-xs font-bold whitespace-nowrap"
+                 style="background: rgba(167,139,250,0.9); border: 1px solid rgba(167,139,250,0.6);">
+              Mobile Eng
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <h3 class="text-lg font-bold text-white">Dzaky</h3>
+            <p class="text-xs font-semibold mt-0.5" style="color: #A78BFA;">Software Engineer · Mobile</p>
+            <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+              Fokus pada pengembangan antarmuka Mobile yang responsif, optimasi performa perangkat seluler, dan implementasi desain mobile-first. Aktif coding sekaligus memimpin wireframe & prototyping di Figma.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap justify-center gap-2">
+            <span class="text-xs px-2.5 py-1 rounded-full font-medium"
+                  style="background: rgba(167,139,250,0.12); color: #A78BFA; border: 1px solid rgba(167,139,250,0.2);">Tailwind CSS</span>
+            <span class="text-xs px-2.5 py-1 rounded-full font-medium"
+                  style="background: rgba(167,139,250,0.12); color: #A78BFA; border: 1px solid rgba(167,139,250,0.2);">Mobile Opt.</span>
+            <span class="text-xs px-2.5 py-1 rounded-full font-medium"
+                  style="background: rgba(167,139,250,0.12); color: #A78BFA; border: 1px solid rgba(167,139,250,0.2);">Figma</span>
+          </div>
+
+          <!-- Social links -->
+          <div class="flex items-center gap-3">
+            <a href="https://github.com/dzaky" target="_blank" rel="noopener noreferrer"
+               class="flex items-center gap-1.5 text-xs font-medium text-gray-400 hover:text-white transition-all duration-200 px-3 py-1.5 rounded-lg hover:scale-105"
+               style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+              GitHub
+            </a>
+            <a href="https://instagram.com/dzaky" target="_blank" rel="noopener noreferrer"
+               class="flex items-center gap-1.5 text-xs font-medium text-gray-400 hover:text-pink-400 transition-all duration-200 px-3 py-1.5 rounded-lg hover:scale-105"
+               style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+              Instagram
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ============================================================
+         LEGAL & COMPLIANCE
+    ============================================================ -->
+    <section class="reveal" id="legal">
+      <div class="text-center mb-10">
+        <span class="text-xs font-bold tracking-widest text-accent uppercase">Hukum & Ketentuan</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold mt-2">Legal & Compliance</h2>
+        <p class="text-sm text-muted mt-2 max-w-md mx-auto">Transparansi adalah fondasi kepercayaan. Bacalah ketentuan berikut dengan saksama.</p>
+      </div>
+
+      <!-- Disclaimer banner -->
+      <div class="rounded-2xl p-5 sm:p-6 mb-8 flex items-start gap-4" style="background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.25);">
+        <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(99,102,241,0.2);">
+          <svg class="w-5 h-5 text-accent-light" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <p class="text-sm text-gray-400 leading-relaxed">
+          <strong class="text-gray-200">Penting:</strong> Jakinime adalah <strong class="text-accent-light">platform indeks pihak ketiga</strong> yang menampilkan data dari API publik (Sankanime API). Jakinime <strong class="text-red-400">tidak menyimpan, menghosting, atau mendistribusikan</strong> file konten komik di server kami sendiri. Seluruh konten yang ditampilkan berasal dari layanan pihak ketiga.
+        </p>
+      </div>
+
+      <!-- Legal Accordion -->
+      <div class="space-y-4">
+
+        <!-- Terms of Service -->
+        <details class="glass-card rounded-2xl group" open>
+          <summary class="flex items-center justify-between px-6 py-5 cursor-pointer list-none rounded-2xl select-none hover:bg-white/[0.02] transition-colors">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: rgba(99,102,241,0.15);">
+                <svg class="w-4 h-4 text-accent-light" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              </div>
+              <span class="font-bold text-white">Terms of Service</span>
+            </div>
+            <svg class="w-5 h-5 text-gray-500 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-6 pb-6 space-y-3">
+            <ul class="space-y-3 text-sm text-gray-400">
+              <li class="legal-item">Dengan mengakses Jakinime, kamu menyetujui penggunaan layanan ini <strong class="text-gray-200">untuk keperluan pribadi dan non-komersial</strong>.</li>
+              <li class="legal-item">Pengguna dilarang mengotomatisasi permintaan (scraping/crawling) tanpa izin tertulis dari tim Jakinime.</li>
+              <li class="legal-item">Jakinime berhak menangguhkan akses pengguna yang melanggar ketentuan layanan tanpa pemberitahuan sebelumnya.</li>
+              <li class="legal-item">Kami tidak bertanggung jawab atas konten yang disediakan oleh layanan pihak ketiga yang terintegrasi dalam platform ini.</li>
+              <li class="legal-item">Ketentuan ini dapat diperbarui sewaktu-waktu. Penggunaan berkelanjutan berarti penerimaan atas perubahan tersebut.</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- Privacy Policy -->
+        <details class="glass-card rounded-2xl group">
+          <summary class="flex items-center justify-between px-6 py-5 cursor-pointer list-none rounded-2xl select-none hover:bg-white/[0.02] transition-colors">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: rgba(167,139,250,0.15);">
+                <svg class="w-4 h-4" style="color: #A78BFA;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+              </div>
+              <span class="font-bold text-white">Privacy Policy</span>
+            </div>
+            <svg class="w-5 h-5 text-gray-500 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-6 pb-6 space-y-3">
+            <ul class="space-y-3 text-sm text-gray-400">
+              <li class="legal-item">Jakinime <strong class="text-gray-200">tidak mengumpulkan data pribadi sensitif</strong> seperti nama lengkap, nomor KTP, atau data finansial.</li>
+              <li class="legal-item">Data seperti riwayat baca dan bookmark disimpan secara lokal di browser pengguna menggunakan <em>localStorage</em>.</li>
+              <li class="legal-item">Kami dapat menggunakan data analitik anonim (seperti jumlah kunjungan halaman) untuk meningkatkan performa layanan.</li>
+              <li class="legal-item">Jakinime tidak menjual, menyewakan, atau membagikan data pengguna kepada pihak ketiga untuk tujuan iklan.</li>
+              <li class="legal-item">Dengan menggunakan layanan, kamu menyetujui kebijakan privasi ini sesuai regulasi yang berlaku.</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- DMCA Notice -->
+        <details class="glass-card rounded-2xl group">
+          <summary class="flex items-center justify-between px-6 py-5 cursor-pointer list-none rounded-2xl select-none hover:bg-white/[0.02] transition-colors">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: rgba(248,113,113,0.12);">
+                <svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+              </div>
+              <span class="font-bold text-white">DMCA Notice</span>
+            </div>
+            <svg class="w-5 h-5 text-gray-500 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-6 pb-6 space-y-4">
+            <div class="rounded-xl p-4 text-sm text-red-300 leading-relaxed" style="background: rgba(248,113,113,0.08); border: 1px solid rgba(248,113,113,0.2);">
+              <strong>Pernyataan Hukum Penting:</strong> Jakinime adalah <em>third-party indexer</em> yang menarik metadata dan referensi konten dari API publik (Sankanime API). Kami <strong>TIDAK menyimpan, menghosting, mengupload, atau mendistribusikan</strong> file gambar maupun file konten komik di server atau infrastruktur kami sendiri.
+            </div>
+            <ul class="space-y-3 text-sm text-gray-400">
+              <li class="legal-item">Seluruh hak cipta konten yang ditampilkan tetap menjadi milik penulis, penerbit, dan pemegang lisensi yang sah.</li>
+              <li class="legal-item">Jika kamu adalah pemegang hak cipta dan merasa kontenmu ditampilkan tanpa izin, silakan ajukan permintaan penghapusan kepada platform sumber (Sankanime API).</li>
+              <li class="legal-item">Untuk laporan DMCA yang ditujukan kepada tim Jakinime, hubungi kami melalui email resmi dengan subjek <strong class="text-red-300">[DMCA] Judul Konten</strong>.</li>
+              <li class="legal-item">Kami berkomitmen untuk merespons setiap laporan DMCA yang valid dalam waktu <strong class="text-gray-200">3–5 hari kerja</strong>.</li>
+            </ul>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ============================================================
+         UCAPAN TERIMA KASIH / NAKAMA
+    ============================================================ -->
+    <section class="reveal text-center" id="nakama">
+      <!-- Decorative glow -->
+      <div class="relative">
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div class="w-72 h-72 rounded-full opacity-10 blur-3xl" style="background: radial-gradient(circle, #6366F1 0%, transparent 70%);"></div>
+        </div>
+
+        <div class="relative glass-card rounded-3xl p-8 sm:p-12 max-w-3xl mx-auto">
+          <!-- Heart icon -->
+          <div class="flex justify-center mb-6">
+            <div class="w-16 h-16 rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, #6366F1 0%, #A78BFA 100%); box-shadow: 0 0 30px rgba(99,102,241,0.4);">
+              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
+            </div>
+          </div>
+
+          <span class="text-xs font-bold tracking-widest text-accent uppercase">Untuk Para Nakama</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold mt-3 mb-6">Terima Kasih, Nakama! 🫶</h2>
+
+          <p class="text-sm sm:text-base text-gray-400 leading-relaxed mb-5">
+            Di balik setiap baris kode yang kami tulis, ada kalian — para <strong class="text-white">Nakama</strong> yang setia menemani perjalanan Jakinime sejak awal. Proyek ini tidak sekadar tugas akademis; ini adalah bukti nyata bahwa mahasiswa Teknik Informatika bisa membangun sesuatu yang benar-benar bermanfaat.
+          </p>
+
+          <p class="text-sm sm:text-base text-gray-400 leading-relaxed mb-5">
+            Setiap kunjungan kalian, setiap chapter yang kalian baca, setiap masukan yang kalian berikan — semua itu menjadi bahan bakar kami untuk terus bergerak maju. Jakinime lahir dari rasa cinta terhadap teknologi dan komunitas, dan kalian adalah alasan terbesar mengapa kami tidak pernah berhenti.
+          </p>
+
+          <p class="text-sm sm:text-base text-gray-400 leading-relaxed">
+            Perjalanan ini masih panjang, dan kami ingin melewatinya bersama kalian. <strong class="text-white">Arigatou, Nakama. Sampai jumpa di chapter berikutnya! 📖✨</strong>
+          </p>
+
+          <!-- Divider -->
+          <div class="my-8 h-px w-24 mx-auto" style="background: rgba(99,102,241,0.4);"></div>
+
+          <!-- Team signature -->
+          <p class="text-sm font-semibold gradient-text">— Dafa & Dzaky, Tim Jakinime</p>
+          <p class="text-xs text-muted mt-1">Mahasiswa Teknik Informatika · 2026</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="mt-16 border-t" style="border-color: #1E2634;">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <!-- Logo -->
+        <div class="flex items-center gap-2">
+          <div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #6366F1 0%, #A78BFA 100%);">
+            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M4 6h16M4 10h16M4 14h10M4 18h8" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <span class="font-extrabold text-sm gradient-text">JAKINIME</span>
+        </div>
+
+        <!-- Links -->
+        <div class="flex items-center gap-5 text-xs text-muted">
+          <a href="#legal" class="hover:text-white transition-colors">Terms</a>
+          <a href="#legal" class="hover:text-white transition-colors">Privacy</a>
+          <a href="#legal" class="hover:text-white transition-colors">DMCA</a>
+          <a href="#nakama" class="hover:text-white transition-colors">Nakama</a>
+        </div>
+
+        <!-- Copyright -->
+        <p class="text-xs text-muted">© 2026 Jakinime. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll reveal script -->
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+    reveals.forEach((el) => observer.observe(el));
+  </script>
+
+</body>
+</html>
